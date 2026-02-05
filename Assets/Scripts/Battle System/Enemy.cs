@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Enemy
 {
+    public string name;
     // Hit points
     public float health;
     // Attack damage

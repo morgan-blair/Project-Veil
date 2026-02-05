@@ -19,6 +19,7 @@ public class PlayerBattleController : MonoBehaviour
     private LineRenderer lr;
     [SerializeField] private GameObject cursorObject;
     [SerializeField] private Image cursorImage;
+    [SerializeField] private BattleMenu battleMenu;
     private Image cooldownImage;
 
     private void Start()
@@ -101,5 +102,24 @@ public class PlayerBattleController : MonoBehaviour
         //cursorPos = value.Get<Vector2>();
         //cursorObject.transform.position = cursorPos;
         //cursorObject.transform.position = GetCursorPos();
+    }
+
+    private void OnMove(InputValue value)
+    {
+        Vector2 input = value.Get<Vector2>();
+        if (input.x > 0f)
+        {
+            battleMenu.Next();
+        }
+        else if (input.x < 0f)
+        {
+            battleMenu.Prev();
+        }
+    }
+
+    private void OnInteract(InputValue value)
+    {
+        if (value.isPressed)
+            battleMenu.Click();
     }
 }
