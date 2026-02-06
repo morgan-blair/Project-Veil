@@ -10,9 +10,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
-    [SerializeField] private Collider2D interactCollider;
+    [SerializeField] private Collider interactCollider;
     
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     private Vector2 moveDirection = Vector2.zero;
     private bool canMove = true;
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
+        rb = gameObject.GetComponent<Rigidbody>();
         LogInputStatus();
     }
 
@@ -32,15 +32,15 @@ public class PlayerController : MonoBehaviour
             Move(moveDirection * movementSpeed);
 
             bool moving = moveDirection != Vector2.zero;
-            if (moving)
-            {
-                float interactAngle = Vector2.SignedAngle(Vector2.right, moveDirection);
-                int segments = 8;
-                int angle = 360 / segments;
-                int direction = (int)Mathf.Floor(interactAngle / angle);
-                interactAngle = direction * angle;
-                interactCollider.transform.localEulerAngles = new Vector3(0, 0, interactAngle);
-            }
+            // if (moving)
+            // {
+            //     float interactAngle = Vector2.SignedAngle(Vector2.right, moveDirection);
+            //     int segments = 8;
+            //     int angle = 360 / segments;
+            //     int direction = (int)Mathf.Floor(interactAngle / angle);
+            //     interactAngle = direction * angle;
+            //     interactCollider.transform.localEulerAngles = new Vector3(0, 0, interactAngle);
+            // }
 
             animator.SetFloat("LastMoveX", lastMoveDirection.x);
             animator.SetFloat("LastMoveY", lastMoveDirection.y);
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="moveVector"> A 2d Vector of the direction to move the player in</param>
     public void Move(Vector2 moveVector)
     {
-        rb.velocity = moveVector;
+        rb.velocity = new Vector3(moveVector.x, 0, moveVector.y);
     }
 
     /// <summary>
@@ -87,13 +87,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteract(InputValue value)
     {
-
         if (!value.isPressed) return;
-
-
-
-
-
+        
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
             rb.velocity = Vector2.zero;
@@ -105,9 +100,9 @@ public class PlayerController : MonoBehaviour
             layerMask = LayerMask.GetMask("Interactable"),
             useLayerMask = true
         };
-        int hits = interactCollider.OverlapCollider(contactFilter, results);
+        //int hits = interactCollider.(contactFilter, results);
 
-        if (hits <= 0) return;
+        //if (hits <= 0) return;
 
         SoundManager2.Instance.PlaySound2D("Hover");
         results[0].gameObject.BroadcastMessage("Interact", this.gameObject);
