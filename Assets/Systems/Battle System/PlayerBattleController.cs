@@ -21,6 +21,8 @@ public class PlayerBattleController : MonoBehaviour
     [SerializeField] private Image cursorImage;
     private Image cooldownImage;
 
+    private const float MIN_SLASH = 0.02f;
+
     private void Start()
     {
         cam = Camera.main;
@@ -70,10 +72,11 @@ public class PlayerBattleController : MonoBehaviour
         {
             // Release
             lr.enabled = false;
-            GameObject attack = Instantiate(attackObject, attackStart, Quaternion.identity);
-            PlayerAttack attackScript = attack.GetComponent<PlayerAttack>();
             Vector2 fullTranslate = GetCursorPos() - attackStart;
             fullTranslate = fullTranslate.normalized * Mathf.Min(fullTranslate.magnitude, weapon.attackSize);
+            if (fullTranslate.magnitude < MIN_SLASH) return;
+            GameObject attack = Instantiate(attackObject, attackStart, Quaternion.identity);
+            PlayerAttack attackScript = attack.GetComponent<PlayerAttack>();
             attackScript.target = attackStart + fullTranslate;
             attackScript.damage = weapon.damage;
             SoundManager2.Instance.PlaySound2D("Slash");
