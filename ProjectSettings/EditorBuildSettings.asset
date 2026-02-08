@@ -6,21 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Monster Terrain Generation.unity
+    path: Assets/Scenes/Old/Monster Terrain Generation.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/Old/Menu.unity
     guid: 0f2617688c8b10648b325a40aa00560b
   - enabled: 1
-    path: Assets/Scenes/menuTutorial.unity
+    path: Assets/Scenes/Old/menuTutorial.unity
     guid: 9fdee07cc3724ed488f9de86e3b968c5
   - enabled: 1
-    path: Assets/Scenes/New Super Dialogue System (1).unity
+    path: Assets/Scenes/Old/New Super Dialogue System (1).unity
     guid: 94429608002b28b4cbd232178fb684ce
   - enabled: 1
-    path: Assets/Scenes/battleTutorial.unity
+    path: Assets/Scenes/Old/battleTutorial.unity
     guid: cc518e30066198d4782ce94de78aa2d8
   - enabled: 1
-    path: Assets/Scenes/BattleSystem.unity
+    path: Assets/Scenes/Old/BattleSystem.unity
     guid: 96d3ecca0b9020c428e8668e559962a8
   m_configObjects: {}
