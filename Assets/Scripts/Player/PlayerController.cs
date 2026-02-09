@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="moveVector"> A 2d Vector of the direction to move the player in</param>
     public void Move(Vector2 moveVector)
     {
-        rb.velocity = new Vector3(moveVector.x, 0, moveVector.y);
+        rb.velocity = new Vector3(moveVector.x, rb.velocity.y, moveVector.y);
     }
 
     /// <summary>
